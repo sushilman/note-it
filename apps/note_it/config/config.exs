@@ -32,7 +32,7 @@ use Mix.Config
 config :note_it, NoteIt.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "note_it",
-  username: "postgres"
+  username: "postgres",
   password: "postgres"
 
 config :note_it, ecto_repos: [NoteIt.Repo]
