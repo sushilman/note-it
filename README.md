@@ -1,2 +1,3 @@
-# note-it
-Work on a note simultaneously !
+# NoteIt
+
+**Work on a note simultaneously !**
