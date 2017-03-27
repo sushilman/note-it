@@ -39,7 +39,8 @@ defmodule NoteIt.Mixfile do
   defp deps do
     [
       {:ecto, "~> 2.1"},
-      {:postgrex, "~> 0.13.2"}
+      {:postgrex, "~> 0.13.2"},
+      {:comeonin, "~> 3.0"}
     ]
   end
 end
