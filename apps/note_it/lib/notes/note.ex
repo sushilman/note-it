@@ -14,9 +14,10 @@ defmodule NoteIt.Note do
   @required_fields [:title]
   @optional_fields [:note]
 
-  def changeset(note, params \\ %{}) do
+  def changeset(note, group, params \\ %{}) do
     note
     |> cast(params, @required_fields ++ @optional_fields)
-    |> cast_assoc(:group)
+    |> put_assoc(:group, group)
+    |> validate_required(@required_fields)
   end
 end

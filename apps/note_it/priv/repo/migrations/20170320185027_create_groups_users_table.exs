@@ -4,7 +4,7 @@ defmodule NoteIt.Repo.Migrations.CreateGroupsUsersTable do
   def change do
     create table(:groups_users) do
       add :user_id, references(:users)
-      add :groups_id, references(:groups)
+      add :group_id, references(:groups)
     end
   end
 end
