@@ -1,6 +1,5 @@
 defmodule NoteIt.Group do
   use Ecto.Schema
-
   import Ecto.Changeset
   alias NoteIt.{User, Note}
 
@@ -16,10 +15,8 @@ defmodule NoteIt.Group do
   @required_fields [:name]
 
   def changeset(group, owner, users \\ [], params \\ %{}) do
-    group_members = [owner | users]
+    group_members = Enum.uniq([owner | users])
     group
-    #|> Repo.preload(:owner)
-    #|> Repo.preload(:users)
     |> cast(params, @required_fields)
     |> put_assoc(:owner, owner)
     |> put_assoc(:users, group_members)
