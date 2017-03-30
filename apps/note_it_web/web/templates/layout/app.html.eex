@@ -16,8 +16,12 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="/signup">Signup</a></li>
-            <li><a href="/login">Login</a></li>
+            <%= if NoteItWeb.Login.logged_in?(@conn) do %>
+              <li><a href="/logout">Logout</a></li>
+            <%= else %>
+              <li><a href="/signup">Signup</a></li>
+              <li><a href="/login">Login</a></li>
+            <% end %>
           </ul>
         </nav>
         <a href="/">

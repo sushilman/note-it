@@ -6,16 +6,23 @@ defmodule NoteItWeb.LoginController do
   end
 
   def login(conn, %{"login" => %{"email" => email, "password" => password}}) do
-    case NoteIt.User.login(email, password) do
-      true ->
-        expiration_time = 60;
+    case NoteItWeb.Login.login(email, password) do
+      {:ok, user} ->
         conn
-        |> Plug.Conn.put_resp_cookie("email", email, max_age: expiration_time)
+        |> put_session(:current_userid, user.id)
+        #|> Plug.Conn.put_resp_cookie("email", email, max_age: 60)
         |> redirect(to: "/")
       :error ->
         conn
         |> put_flash(:error, "Incorrect email or password")
         |> render("login.html")
     end
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> delete_session(:current_userid)
+    |> put_flash(:info, "Logged Out")
+    |> redirect(to: "/")
   end
 end

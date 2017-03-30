@@ -19,9 +19,10 @@ defmodule NoteItWeb.Router do
     get "/", PageController, :index
     get "/signup", SignupController, :index
     post "/signup", SignupController, :signup
-    
+
     get "/login", LoginController, :index
     post "/login", LoginController, :login
+    get "/logout", LoginController, :logout
   end
 
   # Other scopes may use custom stacks.
