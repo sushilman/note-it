@@ -1,3 +1,3 @@
 # NoteIt
 
-**Work on a note simultaneously !**
+**Your personal online notebook !**
