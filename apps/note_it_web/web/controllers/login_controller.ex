@@ -2,7 +2,7 @@ defmodule NoteItWeb.LoginController do
   use NoteItWeb.Web, :controller
 
   def index(conn, _params) do
-    render conn, "login.html"
+    render conn, "index.html"
   end
 
   def login(conn, %{"login" => %{"email" => email, "password" => password}}) do
@@ -15,7 +15,7 @@ defmodule NoteItWeb.LoginController do
       :error ->
         conn
         |> put_flash(:error, "Incorrect email or password")
-        |> render("login.html")
+        |> render("index.html")
     end
   end
 

@@ -23,11 +23,21 @@ defmodule NoteIt.User do
     |> cast_assoc(:groups_owned)
     |> cast_assoc(:groups)
     |> validate_required(@required_fields)
-    |> put_change(:password, hash_password(params.password))
+    |> hash_password()
   end
 
-  defp hash_password(password) do
-    Comeonin.Bcrypt.hashpwsalt(password)
+  defp hash_password(changeset) do
+    password = get_change(changeset, :password)
+
+    if password do
+      hashed_password = Comeonin.Bcrypt.hashpwsalt(password)
+      changeset
+      |> put_change(:password, hashed_password)
+      #|> delete_change(:confirm_password)
+    else
+      changeset
+    end
+
   end
 
 end
