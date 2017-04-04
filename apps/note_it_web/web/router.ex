@@ -9,6 +9,15 @@ defmodule NoteItWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :authenticate do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug NoteItWeb.Plugs.AuthenticatePlug
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -20,8 +29,17 @@ defmodule NoteItWeb.Router do
     get "/signup", SignupController, :index
     post "/signup", SignupController, :signup
 
+
     get "/login", LoginController, :index
     post "/login", LoginController, :login
+  end
+
+  scope "/", NoteItWeb do
+    pipe_through :authenticate
+
+    get "/password", PasswordController, :index
+    post "/password", PasswordController, :change
+
     get "/logout", LoginController, :logout
   end
 

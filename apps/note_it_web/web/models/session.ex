@@ -1,4 +1,4 @@
-defmodule NoteItWeb.Login do
+defmodule NoteItWeb.Session do
   def login(email, password) do
     user = NoteIt.UserQueries.get_by_email(email)
     do_login(password, user)

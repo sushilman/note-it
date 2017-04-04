@@ -6,7 +6,7 @@ defmodule NoteItWeb.LoginController do
   end
 
   def login(conn, %{"login" => %{"email" => email, "password" => password}}) do
-    case NoteItWeb.Login.login(email, password) do
+    case NoteItWeb.Session.login(email, password) do
       {:ok, user} ->
         conn
         |> put_session(:current_userid, user.id)
