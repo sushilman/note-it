@@ -12,6 +12,7 @@ defmodule NoteIt.UserQueries do
 
   def get_by_id(id) do
     Repo.get(User, id)
+    |> Repo.preload(:groups)
   end
 
   def get_by_email(email) do

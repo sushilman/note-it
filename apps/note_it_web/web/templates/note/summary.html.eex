@@ -1,0 +1,5 @@
+<a href="<%= note_path(@conn, :show, @note.id) %>">
+  <div class="list-group-item">
+    <div class="list-group-item-heading"><%= @note.title %></div>
+  </div>
+</a>

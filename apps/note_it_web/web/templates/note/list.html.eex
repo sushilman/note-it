@@ -1,0 +1,8 @@
+<h1>Recent Notes
+  <a href="#" class="btn btn-primary pull-right">Create</a>
+</h1>
+<div class="list-group">
+  <%= for n <- @notes do %>
+    <%= render("summary.html", note: n, conn: @conn) %>
+  <% end %>
+</div>
