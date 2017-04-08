@@ -14,7 +14,7 @@ defmodule NoteIt.Group do
 
   @required_fields [:name]
 
-  def changeset(group, owner, users \\ [], params \\ %{}) do
+  def changeset(group, owner \\ nil, users \\ [], params \\ %{}) do
     group_members = Enum.uniq([owner | users])
     group
     |> cast(params, @required_fields)

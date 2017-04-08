@@ -9,6 +9,8 @@ defmodule NoteIt.GroupQueries do
   def get_by_id(id) do
     Repo.get(Group, id)
     |> Repo.preload(:owner)
+    |> Repo.preload(:users)
+
   end
 
   def update(group) do

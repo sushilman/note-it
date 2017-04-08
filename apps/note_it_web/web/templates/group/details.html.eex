@@ -1,0 +1,9 @@
+<h1><%= @group.name %> </h1>
+Members:
+<div class="list-group">
+<%= for u <- @group.users do %>
+  <div class="list-group-item">
+    <div class="list-group-item-heading"><%= u.name %>
+  </div>
+<% end %>
+</div>

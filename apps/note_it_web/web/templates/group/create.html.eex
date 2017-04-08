@@ -1,0 +1,9 @@
+<h1> Create a group </h1>
+<%= form_for @changeset, group_path(@conn, :add), [as: :group], fn f -> %>
+  <div class="form-group">
+    <%= label f, :name, "Name" %>
+    <%= text_input f, :name, class: "form-control" %> <br/>
+    <%= error_tag f, :name %>
+  </div>
+  <%= submit "Create", class: "btn btn-primary btn-block btn-lg" %>
+<% end %>

@@ -1,10 +1,13 @@
 <h1>Your Groups
-  <a href="#" class="btn btn-primary pull-right">New</a>
+  <a href="<%= group_path(@conn, :create) %>" class="btn btn-primary pull-right">Create</a>
 </h1>
-<%= for g <- @groups do %>
 <div class="list-group">
-  <div class="list-group-item">
-    <div class="list-group-item-heading"><%= g.name %></div>
-  </div>
+  <%= for g <- @groups do %>
+    <a href="<%= group_path(@conn, :details, g.id) %>">
+      <div class="list-group-item">
+        <div class="list-group-item-heading"><%= g.name %>
+         <span class="pull-right"><%= length(g.users) %> Members</span></div>
+      </div>
+    </a>
+  <% end %>
 </div>
-<% end %>
