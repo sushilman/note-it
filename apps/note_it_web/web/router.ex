@@ -32,13 +32,6 @@ defmodule NoteItWeb.Router do
     get "/login", LoginController, :index
     post "/login", LoginController, :login
 
-    get "/groups", GroupController, :list # list groups the user belongs to_
-    get "/groups/create", GroupController, :create
-    post "/groups/create", GroupController, :add
-    get "/groups/invite", GroupController, :invite
-    post "/groups/invite", GroupController, :add_members
-    get "/groups/g/:name", GroupController, :details
-
     get "/notes", NoteController, :list # list notes from all groups the user belongs to
     #get "/notes/my", NoteController, :list_mine
     #get "/notes/create", NoteController, :create
@@ -54,6 +47,14 @@ defmodule NoteItWeb.Router do
     post "/password", PasswordController, :change
 
     get "/logout", LoginController, :logout
+
+    get "/groups", GroupController, :list # list groups the user belongs to_
+    get "/groups/create", GroupController, :create
+    post "/groups/create", GroupController, :add
+    get "/groups/invite", GroupController, :invite
+    post "/groups/invite", GroupController, :add_members
+    get "/groups/g/:name", GroupController, :details
+
   end
 
   # Other scopes may use custom stacks.
