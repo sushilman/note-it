@@ -18,6 +18,7 @@ defmodule NoteIt.GroupQueries do
     Repo.one(query)
     |> Repo.preload(:owner)
     |> Repo.preload(:users)
+    |> Repo.preload(:notes)
 
   end
 
