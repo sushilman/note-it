@@ -3,7 +3,7 @@ Members:
 <div class="list-group">
 <%= for u <- @group.users do %>
   <div class="list-group-item">
-    <div class="list-group-item-heading"><%= u.name %>
+    <div class="list-group-item-heading"><%= "#{u.name} (#{u.email})" %>
   </div>
 <% end %>
 </div>

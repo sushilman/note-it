@@ -10,6 +10,14 @@ defmodule NoteIt.GroupQueries do
     Repo.get(Group, id)
     |> Repo.preload(:owner)
     |> Repo.preload(:users)
+  end
+
+  def get_by_name(name) do
+    query = from g in Group,
+            where: g.name == ^name
+    Repo.one(query)
+    |> Repo.preload(:owner)
+    |> Repo.preload(:users)
 
   end
 

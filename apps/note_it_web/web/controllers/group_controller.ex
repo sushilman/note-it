@@ -15,13 +15,19 @@ defmodule NoteItWeb.GroupController do
   def add(conn, %{"group" => group}) do
     owner = NoteItWeb.Session.current_user(conn)
     changeset = NoteIt.Group.changeset(%NoteIt.Group{}, owner, [], group)
-    NoteIt.GroupQueries.create(changeset);
-    conn
-    |> redirect(to: group_path(conn, :list))
+    case NoteIt.GroupQueries.create(changeset) do
+      {:ok, _} ->
+        conn
+        |> redirect(to: group_path(conn, :list))
+      {:error, errors} ->
+        conn
+        |> put_flash(:error, "Group with the same name already exists.")
+        |> render("create.html", changeset: errors)
+    end
   end
 
-  def details(conn, %{"id" => group_id}) do
-    group = NoteIt.GroupQueries.get_by_id(group_id)
+  def details(conn, %{"name" => group_name}) do
+    group = NoteIt.GroupQueries.get_by_name(group_name)
     render conn, "details.html", group: group
   end
 end

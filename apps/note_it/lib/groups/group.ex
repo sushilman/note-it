@@ -21,5 +21,6 @@ defmodule NoteIt.Group do
     |> put_assoc(:owner, owner)
     |> put_assoc(:users, group_members)
     |> validate_required(@required_fields)
+    |> unique_constraint(:name)
   end
 end

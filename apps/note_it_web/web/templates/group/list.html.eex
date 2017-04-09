@@ -3,7 +3,7 @@
 </h1>
 <div class="list-group">
   <%= for g <- @groups do %>
-    <a href="<%= group_path(@conn, :details, g.id) %>">
+    <a href="<%= group_path(@conn, :details, g.name) %>">
       <div class="list-group-item">
         <div class="list-group-item-heading"><%= g.name %>
          <span class="pull-right"><%= length(g.users) %> Members</span></div>

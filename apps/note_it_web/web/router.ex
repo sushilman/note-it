@@ -37,7 +37,7 @@ defmodule NoteItWeb.Router do
     post "/groups/create", GroupController, :add
     get "/groups/invite", GroupController, :invite
     post "/groups/invite", GroupController, :add_members
-    get "/groups/details/:id", GroupController, :details
+    get "/groups/g/:name", GroupController, :details
 
     get "/notes", NoteController, :list # list notes from all groups the user belongs to
     #get "/notes/my", NoteController, :list_mine
