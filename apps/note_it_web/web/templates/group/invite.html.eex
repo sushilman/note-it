@@ -1,0 +1,9 @@
+<h1> Invite to group </h1>
+<%= form_for @conn, group_path(@conn, :add_member, @group_name), [as: :member], fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, "Email" %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+  <%= submit "Invite", class: "btn btn-primary btn-block btn-lg" %>
+<% end %>

@@ -30,4 +30,23 @@ defmodule NoteItWeb.GroupController do
     group = NoteIt.GroupQueries.get_by_name(group_name)
     render conn, "details.html", group: group
   end
+
+  def invite(conn, %{"name" => group_name}) do
+    render conn, "invite.html", group_name: group_name
+  end
+
+  def add_member(conn, %{"member" => member, "name" => group_name}) do
+    # add to group
+    owner = NoteItWeb.Session.current_user(conn)
+    group = NoteIt.GroupQueries.get_by_name(group_name)
+    invited_user = NoteIt.UserQueries.get_by_email(member["email"])
+
+    if invited_user != owner do
+      changeset = NoteIt.Group.changeset(group, owner, [invited_user | group.users])      
+      NoteIt.GroupQueries.update(changeset)
+    end
+
+    conn
+    |> redirect(to: group_path(conn, :invite, group_name))
+  end
 end

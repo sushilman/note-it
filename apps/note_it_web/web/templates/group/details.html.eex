@@ -1,9 +1,13 @@
-<h1><%= @group.name %> </h1>
+<h1><%= @group.name %>
+<a href="<%= group_path(@conn, :invite, @group.name) %>" class="btn btn-primary pull-right">Add a member</a>
+</h1>
 <div class="list-group">
-<%= for u <- @group.users do %>
   <div class="list-group-item">
-    <div class="list-group-item-heading"><%= "#{u.name} (#{u.email})" %>
+    <%= for u <- @group.users do %>
+        <div class="list-group-item-heading">
+          <%= "#{u.name} (#{u.email})" %>
+        </div>
+    <% end %>
   </div>
-<% end %>
 <%= render NoteItWeb.NoteView, "list.html", notes: @group.notes, conn: @conn %>
 </div>
