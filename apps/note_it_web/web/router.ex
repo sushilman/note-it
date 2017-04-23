@@ -10,11 +10,6 @@ defmodule NoteItWeb.Router do
   end
 
   pipeline :authenticate do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
     plug NoteItWeb.Plugs.AuthenticatePlug
   end
 
@@ -32,16 +27,10 @@ defmodule NoteItWeb.Router do
     get "/login", LoginController, :index
     post "/login", LoginController, :login
 
-    get "/notes", NoteController, :list # list notes from all groups the user belongs to
-    #get "/notes/my", NoteController, :list_mine
-    #get "/notes/create", NoteController, :create
-    get "/notes/:id", NoteController, :show
-    post "/notes/:id", NoteController, :update
-    # get "/notes/:id/delete", NoteController, :delete
   end
 
   scope "/", NoteItWeb do
-    pipe_through :authenticate
+    pipe_through [:browser, :authenticate]
 
     get "/password", PasswordController, :index
     post "/password", PasswordController, :change
@@ -55,6 +44,11 @@ defmodule NoteItWeb.Router do
     post "/groups/g/:name/invite", GroupController, :add_member
     get "/groups/g/:name", GroupController, :details
 
+    get "/notes", NoteController, :list # list notes from all groups the user belongs to
+    #get "/notes/create", NoteController, :create
+    get "/notes/:id", NoteController, :show
+    post "/notes/:id", NoteController, :update
+    # get "/notes/:id/delete", NoteController, :delete
   end
 
   # Other scopes may use custom stacks.

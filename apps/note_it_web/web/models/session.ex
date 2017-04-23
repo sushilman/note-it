@@ -17,8 +17,12 @@ defmodule NoteItWeb.Session do
     Comeonin.Bcrypt.checkpw(password, hashed_password)
   end
 
+  def current_userid(conn) do
+    Plug.Conn.get_session(conn, :current_userid)
+  end
+
   def current_user(conn) do
-    id = Plug.Conn.get_session(conn, :current_userid)
+    id = current_userid(conn)
     if id, do: NoteIt.UserQueries.get_by_id(id)
   end
 

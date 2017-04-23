@@ -19,13 +19,8 @@ defmodule NoteIt.NoteQueries do
     Repo.all(query)
   end
 
+  def get_by_user(user) do
 
-  @spec get_all_for_groups(list) :: list
-  def get_all_for_groups(groups) do
-    query = from n in Note,
-      where: n.group_id in [1, 2, 3] 
-
-    Repo.all(query)
   end
 
   def update(note) do
